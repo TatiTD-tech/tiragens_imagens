@@ -48,3 +48,20 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   }
 });
+
+// Compartilhar leitura
+const shareBtn = document.getElementById("share-btn");
+const shareMsg = document.getElementById("share-msg");
+
+if (shareBtn) {
+  shareBtn.addEventListener("click", async () => {
+    const shareText = `🌒 Fiz minha leitura no Jogo das Imagens Internas da Lua Cósmica. Foi uma experiência mágica e reveladora. Faça a sua: https://tatitd-tech.github.io/tiragens_imagens/`;
+
+    try {
+      await navigator.clipboard.writeText(shareText);
+      shareMsg.textContent = "🔗 Texto copiado! Agora é só colar onde quiser.";
+    } catch (err) {
+      shareMsg.textContent = "❌ Não foi possível copiar. Copie manualmente: " + shareText;
+    }
+  });
+}
