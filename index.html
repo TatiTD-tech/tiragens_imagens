@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jogo das Imagens Internas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🌀 Jogo das Imagens Internas</h1>
+    <p class="intro">Escolha as cartas na ordem que tocar sua intuição. Cada escolha revela algo sobre sua jornada interior.</p>
+
+    <div id="card-grid" class="card-grid">
+      <!-- As imagens das cartas serão inseridas aqui via script ou manualmente -->
+      <img src="img/img1.jpg" class="card" data-id="1" alt="Carta 1">
+      <img src="img/img2.jpg" class="card" data-id="2" alt="Carta 2">
+      <img src="img/img3.jpg" class="card" data-id="3" alt="Carta 3">
+      <img src="img/img4.jpg" class="card" data-id="4" alt="Carta 4">
+      <img src="img/img5.jpg" class="card" data-id="5" alt="Carta 5">
+      <img src="img/img6.jpg" class="card" data-id="6" alt="Carta 6">
+      <img src="img/img7.jpg" class="card" data-id="7" alt="Carta 7">
+      <img src="img/img8.jpg" class="card" data-id="8" alt="Carta 8">
+      <img src="img/img9.jpg" class="card" data-id="9" alt="Carta 9">
+      <img src="img/img10.jpg" class="card" data-id="10" alt="Carta 10">
+      <img src="img/img11.jpg" class="card" data-id="11" alt="Carta 11">
+      <img src="img/img12.jpg" class="card" data-id="12" alt="Carta 12">
+    </div>
+
+    <div id="final-message" class="hidden">
+      <h2>✨ Sua Jornada Revelada</h2>
+      <div id="sequence-result"></div>
+      <div id="card-advice"></div>
+      <button onclick="location.reload()">🔁 Nova Leitura</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
