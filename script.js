@@ -1,7 +1,16 @@
 const archetypes = {
-  1: { name: "A Criança", meaning: "inocência, espontaneidade, nascimento interior" },
+  1: { name: "A Chave", meaning: "solução, revelação, sabedoria prática" },
   2: { name: "A Serpente", meaning: "transformação, tentação, verdade crua" },
-  3: { name: "A Chave", meaning: "solução, revelação, sabedoria prática" }
+  3: { name: "A Criança", meaning: "inocência, espontaneidade, nascimento interior" },
+  4: { name: "A Floresta", meaning: "mistério interior, busca ancestral" },
+  5: { name: "A Estrela", meaning: "esperança, inspiração, proteção espiritual" },
+  6: { name: "A Morte", meaning: "fim necessário, renascimento, ruptura" },
+  7: { name: "A Espiral", meaning: "movimento cíclico, evolução, repetição transformadora" },
+  8: { name: "O Portal", meaning: "transição, novas possibilidades, limiar de mudança" },
+  9: { name: "O Coração", meaning: "emoção pura, verdade afetiva, conexão" },
+ 10: { name: "A Borboleta", meaning: "metamorfose, liberdade interior, leveza" },
+ 11: { name: "O Espelho", meaning: "autoconhecimento, reflexo, projeções" },
+ 12: { name: "A Máscara", meaning: "persona, aparência, o que está por trás" }
 };
 
 let chosenSequence = [];
@@ -14,15 +23,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   cards.forEach(card => {
     card.addEventListener("click", () => {
-      if (!card.classList.contains("clicked")) {
+      if (!card.classList.contains("clicked") && chosenSequence.length < 3) {
         const id = parseInt(card.dataset.id);
         chosenSequence.push(id);
         card.classList.add("clicked");
-        card.style.opacity = 0;
+        card.style.opacity = "0";
         card.style.pointerEvents = "none";
 
         if (chosenSequence.length === 3) {
-          showResults();
+          setTimeout(showResults, 500);
         }
       }
     });
@@ -38,30 +47,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     sequenceResult.innerHTML = `<h3>Sua sequência:</h3>${journey}`;
 
-    const lastCard = archetypes[chosenSequence[2]];
+    const remaining = Object.keys(archetypes)
+      .filter(key => !chosenSequence.includes(parseInt(key)))
+      .map(key => archetypes[key]);
+
+    const randomIndex = Math.floor(Math.random() * remaining.length);
+    const adviceCard = remaining[randomIndex];
 
     cardAdvice.innerHTML = `
-      <h3>🌟 Carta-Conselho: <span style="color:#93c5fd">${lastCard.name}</span></h3>
-      <p>${lastCard.meaning.charAt(0).toUpperCase() + lastCard.meaning.slice(1)}.
+      <h3>🌟 Carta-Conselho: <span style="color:#93c5fd">${adviceCard.name}</span></h3>
+      <p>${adviceCard.meaning.charAt(0).toUpperCase() + adviceCard.meaning.slice(1)}.
       Confie neste símbolo como um guia para o próximo passo da sua jornada.</p>
       <p style="margin-top:1em; font-style: italic;">🌒 Com carinho, Lua Cósmica Tarot.</p>
     `;
   }
 });
-
-// Compartilhar leitura
-const shareBtn = document.getElementById("share-btn");
-const shareMsg = document.getElementById("share-msg");
-
-if (shareBtn) {
-  shareBtn.addEventListener("click", async () => {
-    const shareText = `🌒 Fiz minha leitura no Jogo das Imagens Internas da Lua Cósmica. Foi uma experiência mágica e reveladora. Faça a sua: https://tatitd-tech.github.io/tiragens_imagens/`;
-
-    try {
-      await navigator.clipboard.writeText(shareText);
-      shareMsg.textContent = "🔗 Texto copiado! Agora é só colar onde quiser.";
-    } catch (err) {
-      shareMsg.textContent = "❌ Não foi possível copiar. Copie manualmente: " + shareText;
-    }
-  });
-}
