@@ -1,4 +1,23 @@
-const archetypes = {
+function showResults() {
+  finalMessage.classList.remove("hidden");
+
+  const journey = chosenSequence.map((id, index) => {
+    const archetype = archetypes[id];
+    return `<p><strong>${index + 1}.</strong> ${archetype.name}: <em>${archetype.meaning}</em></p>`;
+  }).join("");
+
+  sequenceResult.innerHTML = `<h3>Sua sequência:</h3>${journey}`;
+
+  // Filtrar cartas não escolhidas
+  const remaining = Object.keys(archetypes)
+    .filter(key => !chosenSequence.includes(parseInt(key)))
+    .map(key => archetypes[key]);
+
+  // Sorteia uma carta-conselho entre as que não foram escolhidas
+  const randomIndex = Math.floor(Math.random() * remaining.length);
+  const adviceCard = remaining[randomIndex];
+
+  const archetypes = {
   1: { name: "A Chave", meaning: "solução, revelação, sabedoria prática" },
   2: { name: "A Serpente", meaning: "transformação, tentação, verdade crua" },
   3: { name: "A Criança", meaning: "inocência, espontaneidade, nascimento interior" },
@@ -62,3 +81,12 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   }
 });
+
+
+  cardAdvice.innerHTML = `
+    <h3>🌟 Carta-Conselho: <span style="color:#93c5fd">${adviceCard.name}</span></h3>
+    <p>${adviceCard.meaning.charAt(0).toUpperCase() + adviceCard.meaning.slice(1)}.
+    Confie neste símbolo como um guia para o próximo passo da sua jornada.</p>
+    <p style="margin-top:1em; font-style: italic;">🌒 Com carinho, Lua Cósmica Tarot.</p>
+  `;
+}
