@@ -38,30 +38,36 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  function showResults() {
-    finalMessage.classList.remove("hidden");
+function showResults() {
+  finalMessage.classList.remove("hidden");
 
-    // Sequência escolhida
-    const journey = chosenSequence.map((id, index) => {
-      const archetype = archetypes[id];
-      return `<p><strong>${index + 1}.</strong> ${archetype.name}: <em>${archetype.meaning}</em></p>`;
-    }).join("");
-    sequenceResult.innerHTML = `<h3>Sua sequência:</h3>${journey}`;
+  // Sequência escolhida
+  const journey = chosenSequence.map((id, index) => {
+    const archetype = archetypes[id];
+    return `<p><strong>${index + 1}.</strong> ${archetype.name}: <em>${archetype.meaning}</em></p>`;
+  }).join("");
 
-    // Define as cartas que não foram escolhidas (mesmo as que estão "invisíveis")
-    const allIds = Object.keys(archetypes).map(Number);
-    const remaining = allIds.filter(id => !chosenSequence.includes(id));
+  // Define as cartas que não foram escolhidas (mesmo as que estão "invisíveis")
+  const allIds = Object.keys(archetypes).map(Number);
+  const remaining = allIds.filter(id => !chosenSequence.includes(id));
 
-    // Sorteia uma carta-conselho das restantes
-    const randomIndex = Math.floor(Math.random() * remaining.length);
-    const adviceCard = archetypes[remaining[randomIndex]];
+  // Sorteia uma carta-conselho das restantes
+  const randomIndex = Math.floor(Math.random() * remaining.length);
+  const adviceCard = archetypes[remaining[randomIndex]];
 
-    cardAdvice.innerHTML = `
-      <h3>🌟 Carta-Conselho: <span style="color:#93c5fd">${adviceCard.name}</span></h3>
-      <p>${capitalize(adviceCard.meaning)}. Confie neste símbolo como um guia para o próximo passo da sua jornada.</p>
-      <p style="margin-top:1em; font-style: italic;">🌒 Com carinho, Lua Cósmica Tarot.</p>
-    `;
-  }
+  // Renderiza tudo junto
+  sequenceResult.innerHTML = `
+    <h2>✨ Sua Jornada Revelada</h2>
+    <h3>Sua sequência:</h3>
+    ${journey}
+    <h3>🌟 Carta-Conselho: <span style="color:#93c5fd">${adviceCard.name}</span></h3>
+    <p>${capitalize(adviceCard.meaning)}. Confie neste símbolo como um guia para o próximo passo da sua jornada.</p>
+    <p style="margin-top:1em; font-style: italic;">🌒 Com carinho, Lua Cósmica Tarot.</p>
+  `;
+
+  // Esconde a div duplicada, se ainda estiver no HTML
+  cardAdvice.innerHTML = "";
+}
 
   function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
