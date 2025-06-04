@@ -45,15 +45,15 @@ body::after {
 .container {
   max-width: 1200px;
   margin: auto;
-  padding-top: 180px; 
+  padding-top: 120px; 
 /* adicionado espaço extra no topo */
   position: relative;
   z-index: 1;
-  font-size: 48px;
+  font-size: 32px;
 }
 
 .intro {
-  font-size: 2rem;
+  font-size: 1.25rem;
   margin-bottom: 80px;
   margin-top: 20px;
 }
