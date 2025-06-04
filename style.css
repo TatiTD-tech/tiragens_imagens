@@ -43,17 +43,19 @@ body::after {
 }
 
 .container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: auto;
-  padding-top: 60px; /* adicionado espaço extra no topo */
+  padding-top: 180px; 
+/* adicionado espaço extra no topo */
   position: relative;
   z-index: 1;
+  font-size: 48px;
 }
 
 .intro {
-  font-size: 1.25rem;
-  margin-bottom: 40px;
-  margin-top: 10px;
+  font-size: 2rem;
+  margin-bottom: 80px;
+  margin-top: 20px;
 }
 
 .card-grid {
@@ -65,8 +67,8 @@ body::after {
 }
 
 .card {
-  width: 200px;
-  height: 300px;
+  width: 300px;
+  height: 500px;
   border-radius: 12px;
   border: 2px solid #3b82f6;
   cursor: pointer;
