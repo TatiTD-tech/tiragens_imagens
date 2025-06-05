@@ -62,8 +62,9 @@ document.addEventListener("DOMContentLoaded", () => {
       Confie neste símbolo como um guia para o próximo passo da sua jornada.</p>
       <p style="margin-top:1em; font-style: italic;">🌒 Com carinho, Lua Cósmica Tarot.</p>
     `;
+    document.getElementById("card-grid").style.display = "none";
   }
 });
 
-    document.getElementById("card-grid").style.display = "none";
+    
 
