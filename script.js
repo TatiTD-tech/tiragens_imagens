@@ -41,6 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
   function showResults() {
     finalMessage.classList.remove("hidden");
 
+    document.getElementById("card-grid").style.display = "none";
+
+
     // Sequência escolhida
     const journey = chosenSequence.map((id, index) => {
       const archetype = archetypes[id];

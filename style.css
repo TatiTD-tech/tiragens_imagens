@@ -82,6 +82,7 @@ body::after {
   transform: rotateY(180deg);
   opacity: 0;
   pointer-events: none;
+  position: absolute;
 }
 
 .card:hover {
