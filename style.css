@@ -16,46 +16,45 @@ body::before {
   left: 0;
   width: 200%;
   height: 200%;
-  background: radial-gradient(#ffffff 1px, transparent 1px),
-              radial-gradient(#ffffff 1px, transparent 1px);
-  background-position: 0 0, 25px 25px;
-  background-size: 50px 50px;
-  animation: stars 60s linear infinite;
-  opacity: 0.08;
+  background-image: 
+    radial-gradient(white 1px, transparent 1px),
+    radial-gradient(white 1px, transparent 1px),
+    radial-gradient(white 1px, transparent 1px);
+  background-size: 100px 100px, 150px 150px, 200px 200px;
+  background-position: 0 0, 50px 50px, 100px 100px;
+  animation: sparkle 4s ease-in-out infinite alternate;
   z-index: 0;
+  opacity: 0.15;
+  pointer-events: none;
 }
 
-body::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('https://www.transparenttextures.com/patterns/dark-fish-skin.png');
-  opacity: 0.05;
-  z-index: 0;
-}
-
-@keyframes stars {
-  from { transform: translate(0, 0); }
-  to { transform: translate(-500px, -500px); }
+@keyframes sparkle {
+  0% {
+    opacity: 0.05;
+    filter: brightness(0.9);
+  }
+  50% {
+    opacity: 0.2;
+    filter: brightness(1.5);
+  }
+  100% {
+    opacity: 0.1;
+    filter: brightness(1.2);
+  }
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 800px;
   margin: auto;
-  padding-top: 120px; 
-/* adicionado espaço extra no topo */
+  padding-top: 60px;
   position: relative;
   z-index: 1;
-  font-size: 32px;
 }
 
 .intro {
   font-size: 1.25rem;
-  margin-bottom: 80px;
-  margin-top: 20px;
+  margin-bottom: 40px;
+  margin-top: 10px;
 }
 
 .card-grid {
@@ -64,11 +63,12 @@ body::after {
   gap: 30px;
   flex-wrap: wrap;
   margin: 50px 0;
+  transition: opacity 0.8s ease;
 }
 
 .card {
-  width: 300px;
-  height: 500px;
+  width: 200px;
+  height: 300px;
   border-radius: 12px;
   border: 2px solid #3b82f6;
   cursor: pointer;
@@ -89,6 +89,20 @@ body::after {
   transform: scale(1.08);
 }
 
+.fade-out {
+  animation: fadeOut 0.8s ease forwards;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to {
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+    margin: 0;
+  }
+}
+
 .hidden {
   display: none;
 }
@@ -99,6 +113,38 @@ body::after {
   border-radius: 12px;
   margin-top: 40px;
   animation: fadeIn 1s ease-in-out;
+}
+
+#final-message h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: #facc15;
+}
+
+#final-message h3 {
+  font-size: 1.3rem;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  color: #e0f2fe;
+}
+
+#sequence-result p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 6px 0;
+}
+
+#card-advice p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+#card-advice p:last-child {
+  font-style: italic;
+  font-size: 1rem;
+  margin-top: 20px;
+  color: #cbd5e1;
 }
 
 button {
